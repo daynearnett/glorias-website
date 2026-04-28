@@ -1,0 +1,1983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gloria's — Premium Spirits & Tasting Experiences</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       RESET & VARIABLES
+    ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #0c0906;
+      --bg-2:       #131009;
+      --bg-card:    #1c1510;
+      --bg-card-2:  #221a12;
+      --gold:       #c9a96e;
+      --gold-light: #e2ca8c;
+      --gold-dark:  #8b6a30;
+      --cream:      #f2ead8;
+      --cream-dim:  #a89478;
+      --cream-faint:#4a3e30;
+      --border:     #2e2218;
+      --border-gold:#3d2e1a;
+      --nav-h:      72px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* ============================================================
+       TYPOGRAPHY
+    ============================================================ */
+    .serif { font-family: 'Playfair Display', serif; }
+    .italic-serif { font-family: 'Cormorant Garamond', serif; }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      line-height: 1.15;
+    }
+
+    .label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ============================================================
+       UTILITY
+    ============================================================ */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.875rem 2.25rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.4s ease;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--gold);
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.77, 0, 0.18, 1);
+    }
+
+    .btn:hover { color: var(--bg); }
+    .btn:hover::before { transform: translateY(0); }
+    .btn span { position: relative; z-index: 1; }
+
+    .btn-filled {
+      background: var(--gold);
+      color: var(--bg);
+    }
+    .btn-filled::before { background: var(--cream); }
+    .btn-filled:hover { color: var(--bg); }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: var(--gold);
+      display: block;
+      margin: 1.5rem 0;
+    }
+
+    /* SCROLL ANIMATIONS */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up-delay-1 { transition-delay: 0.1s; }
+    .fade-up-delay-2 { transition-delay: 0.2s; }
+    .fade-up-delay-3 { transition-delay: 0.3s; }
+    .fade-up-delay-4 { transition-delay: 0.4s; }
+    .fade-up-delay-5 { transition-delay: 0.5s; }
+
+    .fade-in {
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+    .fade-in.visible { opacity: 1; }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      transition: background 0.5s ease, backdrop-filter 0.5s ease, border-color 0.5s ease;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav.scrolled {
+      background: rgba(12, 9, 6, 0.9);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-color: var(--border);
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.375rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--cream);
+    }
+
+    .nav-logo span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover { color: var(--cream); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.625rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.625rem 1.5rem;
+      border: 1px solid var(--border-gold);
+      color: var(--gold);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold);
+      color: var(--bg);
+      border-color: var(--gold);
+    }
+
+    /* Hamburger */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--cream);
+      transition: all 0.3s ease;
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 85%, rgba(139, 90, 24, 0.22) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 50% 50%, rgba(100, 62, 10, 0.12) 0%, transparent 70%),
+        linear-gradient(180deg, #0c0906 0%, #110d08 50%, #0c0906 100%);
+      transform-origin: center;
+      will-change: transform;
+    }
+
+    /* Subtle noise texture */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    /* Decorative gold lines */
+    .hero-lines {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .hero-lines::before,
+    .hero-lines::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 280px;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(201, 169, 110, 0.15), transparent);
+    }
+
+    .hero-lines::before { left: 8%; }
+    .hero-lines::after { right: 8%; }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 1.5rem;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.875rem;
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-bottom: 1.75rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.2s forwards;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(5rem, 14vw, 11rem);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+      opacity: 0;
+      animation: fadeUp 1.1s ease 0.35s forwards;
+    }
+
+    .hero-title-accent {
+      display: block;
+      font-style: italic;
+      font-size: clamp(1.2rem, 3.5vw, 2.5rem);
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      text-indent: 0.35em;
+      margin-top: 0.75rem;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 2rem auto;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.55s forwards;
+    }
+
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--cream-dim);
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.65s forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.8s forwards;
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 2;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.4s forwards;
+    }
+
+    .hero-scroll span {
+      font-size: 0.5625rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--cream-faint);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(180deg, var(--gold-dark), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.2); transform-origin: top; }
+    }
+
+    /* ============================================================
+       MARQUEE / BRAND CAROUSEL
+    ============================================================ */
+    #brands {
+      padding: 3.5rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-2);
+      overflow: hidden;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      white-space: nowrap;
+    }
+
+    .marquee-track--1 {
+      animation: marqueeLeft 35s linear infinite;
+    }
+
+    .marquee-track--2 {
+      animation: marqueeRight 30s linear infinite;
+      margin-top: 1.25rem;
+    }
+
+    .marquee-track:hover { animation-play-state: paused; }
+
+    @keyframes marqueeLeft {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    @keyframes marqueeRight {
+      from { transform: translateX(-50%); }
+      to   { transform: translateX(0); }
+    }
+
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 2.5rem;
+      padding: 0 2.5rem;
+    }
+
+    .marquee-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.0625rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--cream-dim);
+      transition: color 0.3s ease;
+      cursor: default;
+    }
+
+    .marquee-brand:hover { color: var(--gold); }
+
+    .marquee-sep {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--gold-dark);
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       PHILOSOPHY / INTRO
+    ============================================================ */
+    #philosophy {
+      padding: 9rem 0;
+    }
+
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7rem;
+      align-items: center;
+    }
+
+    .philosophy-left .pull-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.4;
+      color: var(--cream);
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .philosophy-left .pull-quote::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.25em;
+      bottom: 0.25em;
+      width: 2px;
+      background: linear-gradient(180deg, var(--gold), transparent);
+    }
+
+    .philosophy-right p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--cream-dim);
+      margin-bottom: 1.5rem;
+    }
+
+    .philosophy-right p:last-of-type { margin-bottom: 2rem; }
+
+    /* ============================================================
+       COLLECTION STRIP
+    ============================================================ */
+    #collection {
+      padding: 2rem 0 7rem;
+    }
+
+    .collection-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3.5rem;
+      gap: 2rem;
+    }
+
+    .collection-header h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    .collection-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+
+    .collection-card {
+      cursor: pointer;
+    }
+
+    .collection-card-img {
+      aspect-ratio: 3/4;
+      border-radius: 2px;
+      margin-bottom: 1.25rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .collection-card:nth-child(1) .collection-card-img {
+      background: linear-gradient(160deg, #2a1a0a 0%, #4a2c10 50%, #1a0d05 100%);
+    }
+    .collection-card:nth-child(2) .collection-card-img {
+      background: linear-gradient(160deg, #0a1520 0%, #1a3040 50%, #050d15 100%);
+    }
+    .collection-card:nth-child(3) .collection-card-img {
+      background: linear-gradient(160deg, #1a0a1a 0%, #3a1520 50%, #0d050a 100%);
+    }
+    .collection-card:nth-child(4) .collection-card-img {
+      background: linear-gradient(160deg, #0d1a0a 0%, #1a3015 50%, #060d04 100%);
+    }
+
+    .collection-card-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.5) 100%);
+      transition: opacity 0.4s ease;
+    }
+
+    .collection-card:hover .collection-card-img::after { opacity: 0.7; }
+
+    .collection-card-img-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .collection-card:hover .collection-card-img-inner {
+      transform: scale(1.04);
+    }
+
+    .collection-bottle-icon {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: rgba(201, 169, 110, 0.35);
+      letter-spacing: 0.15em;
+    }
+
+    .collection-card-region {
+      font-size: 0.5625rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .collection-card-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.0625rem;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 0.35rem;
+    }
+
+    .collection-card-desc {
+      font-size: 0.8125rem;
+      color: var(--cream-dim);
+      line-height: 1.6;
+    }
+
+    /* ============================================================
+       EVENTS
+    ============================================================ */
+    #events {
+      padding: 7rem 0;
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .events-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    .events-header h2 {
+      font-size: clamp(2.25rem, 5vw, 3.75rem);
+      margin-bottom: 1rem;
+    }
+
+    .events-header p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1875rem;
+      color: var(--cream-dim);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .event-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      transition: border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .event-card:hover {
+      border-color: rgba(201, 169, 110, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,169,110,0.1);
+    }
+
+    .event-card-visual {
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .event-card:nth-child(1) .event-card-visual {
+      background: linear-gradient(135deg, #1e0f02 0%, #3d2008 40%, #1a0c04 70%, #261408 100%);
+    }
+    .event-card:nth-child(2) .event-card-visual {
+      background: linear-gradient(135deg, #020810 0%, #071525 40%, #04101e 70%, #060e18 100%);
+    }
+    .event-card:nth-child(3) .event-card-visual {
+      background: linear-gradient(135deg, #100208 0%, #200412 40%, #1a0510 70%, #0c020a 100%);
+    }
+    .event-card:nth-child(4) .event-card-visual {
+      background: linear-gradient(135deg, #050f02 0%, #0d2205 40%, #091a04 70%, #041002 100%);
+    }
+
+    .event-visual-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 60% at 50% 80%, rgba(201, 169, 110, 0.12), transparent),
+        linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.6) 100%);
+    }
+
+    .event-visual-label {
+      position: absolute;
+      bottom: 1.25rem;
+      left: 1.5rem;
+      right: 1.5rem;
+    }
+
+    .event-date-badge {
+      display: inline-block;
+      font-size: 0.5625rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(201, 169, 110, 0.35);
+      padding: 0.35rem 0.875rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .event-card-body {
+      padding: 1.75rem;
+    }
+
+    .event-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3125rem;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 0.625rem;
+      line-height: 1.25;
+    }
+
+    .event-card-desc {
+      font-size: 0.875rem;
+      color: var(--cream-dim);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .event-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .event-price-label {
+      font-size: 0.5625rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .event-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.375rem;
+      color: var(--gold);
+    }
+
+    .event-price-sub {
+      font-size: 0.6875rem;
+      color: var(--cream-faint);
+      margin-left: 0.25rem;
+    }
+
+    .event-reserve-btn {
+      font-size: 0.5625rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid var(--border-gold);
+      color: var(--gold);
+      cursor: pointer;
+      transition: all 0.35s ease;
+      background: transparent;
+    }
+
+    .event-reserve-btn:hover {
+      background: var(--gold);
+      color: var(--bg);
+      border-color: var(--gold);
+    }
+
+    /* ============================================================
+       ABOUT
+    ============================================================ */
+    #about {
+      padding: 10rem 0;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .about-photo {
+      aspect-ratio: 4/5;
+      background: linear-gradient(160deg, #1e1208 0%, #2e1c0c 35%, #180e06 65%, #221408 100%);
+      border-radius: 1px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-photo-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 30%, rgba(201, 169, 110, 0.08), transparent),
+        linear-gradient(180deg, transparent 30%, rgba(12, 9, 6, 0.4) 100%);
+    }
+
+    .about-photo-decoration {
+      position: absolute;
+      inset: -1px;
+      border: 1px solid rgba(201, 169, 110, 0.12);
+      transform: translate(12px, 12px);
+      pointer-events: none;
+    }
+
+    .about-photo-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: rgba(201, 169, 110, 0.25);
+      font-size: 1.125rem;
+      letter-spacing: 0.1em;
+    }
+
+    .about-content { }
+
+    .about-dropcap {
+      font-family: 'Playfair Display', serif;
+      font-size: 6rem;
+      font-weight: 400;
+      line-height: 0.8;
+      float: left;
+      margin-right: 0.15em;
+      margin-top: 0.1em;
+      color: var(--gold);
+    }
+
+    .about-content h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 0.75rem;
+    }
+
+    .about-content .subheading {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1875rem;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    .about-content p {
+      font-size: 0.9375rem;
+      line-height: 1.9;
+      color: var(--cream-dim);
+      margin-bottom: 1.25rem;
+    }
+
+    .about-content p:last-of-type { margin-bottom: 2rem; }
+
+    .about-signature {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 2rem;
+      color: var(--gold);
+      margin-top: 2rem;
+      display: block;
+    }
+
+    /* ============================================================
+       VISIT
+    ============================================================ */
+    #visit {
+      padding: 7rem 0;
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+    }
+
+    .visit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .visit-content h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 0.75rem;
+    }
+
+    .visit-content .subheading {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--cream-dim);
+      font-size: 1.125rem;
+      margin-bottom: 3rem;
+    }
+
+    .visit-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .visit-info-item {}
+
+    .visit-info-label {
+      font-size: 0.5625rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .visit-info-value {
+      font-size: 0.9375rem;
+      color: var(--cream-dim);
+      line-height: 1.7;
+    }
+
+    .visit-info-value a {
+      color: var(--cream);
+      border-bottom: 1px solid var(--border-gold);
+      padding-bottom: 1px;
+      transition: border-color 0.3s ease;
+    }
+
+    .visit-info-value a:hover { border-color: var(--gold); }
+
+    .visit-map {
+      aspect-ratio: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .visit-map-inner {
+      text-align: center;
+    }
+
+    .visit-map-pin {
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(201, 169, 110, 0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      position: relative;
+    }
+
+    .visit-map-pin::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .visit-map-pin::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1px solid rgba(201, 169, 110, 0.15);
+      animation: pingPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes pingPulse {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50%       { transform: scale(1.3); opacity: 0; }
+    }
+
+    .visit-map-address {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--cream-dim);
+      font-size: 0.9375rem;
+    }
+
+    /* Grid lines for map */
+    .visit-map::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.5;
+    }
+
+    /* ============================================================
+       NEWSLETTER STRIP
+    ============================================================ */
+    #newsletter {
+      padding: 6rem 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .newsletter-content h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+      margin-bottom: 0.75rem;
+    }
+
+    .newsletter-content p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--cream-dim);
+      font-size: 1.125rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-right: none;
+      padding: 0.875rem 1.25rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8125rem;
+      color: var(--cream);
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .newsletter-input::placeholder { color: var(--cream-faint); }
+    .newsletter-input:focus { border-color: var(--border-gold); }
+
+    .newsletter-submit {
+      background: var(--gold);
+      border: 1px solid var(--gold);
+      color: var(--bg);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.5625rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.875rem 1.5rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .newsletter-submit:hover { background: var(--gold-light); }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      padding: 3rem 0;
+      border-top: 1px solid var(--border);
+      background: var(--bg);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.0625rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--cream-dim);
+    }
+
+    .footer-nav {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-nav a {
+      font-size: 0.5625rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream-faint);
+      transition: color 0.3s ease;
+    }
+
+    .footer-nav a:hover { color: var(--gold); }
+
+    .footer-copy {
+      font-size: 0.6875rem;
+      color: var(--cream-faint);
+    }
+
+    /* ============================================================
+       MODAL (Purchase)
+    ============================================================ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.85);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      max-width: 520px;
+      width: 100%;
+      padding: 3rem;
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .modal-overlay.open .modal {
+      transform: translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--cream-dim);
+      font-size: 1.25rem;
+      line-height: 1;
+      padding: 0.25rem;
+      transition: color 0.3s ease;
+    }
+
+    .modal-close:hover { color: var(--cream); }
+
+    .modal h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal .modal-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+
+    .modal-field {
+      margin-bottom: 1.25rem;
+    }
+
+    .modal-field label {
+      display: block;
+      font-size: 0.5625rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-field input,
+    .modal-field select {
+      width: 100%;
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      color: var(--cream);
+      outline: none;
+      transition: border-color 0.3s ease;
+      -webkit-appearance: none;
+    }
+
+    .modal-field input:focus,
+    .modal-field select:focus {
+      border-color: var(--border-gold);
+    }
+
+    .modal-field select option { background: var(--bg-card); }
+
+    .modal-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin: 1.5rem 0;
+    }
+
+    .modal-total-label {
+      font-size: 0.5625rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+    }
+
+    .modal-total-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--gold);
+    }
+
+    .modal-submit {
+      width: 100%;
+      background: var(--gold);
+      border: none;
+      color: var(--bg);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.625rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      padding: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .modal-submit:hover { background: var(--gold-light); }
+
+    /* ============================================================
+       MOBILE MENU
+    ============================================================ */
+    .mobile-menu {
+      position: fixed;
+      top: 0; right: -100%;
+      width: min(320px, 100%);
+      height: 100%;
+      background: var(--bg-card);
+      border-left: 1px solid var(--border);
+      z-index: 150;
+      padding: 5rem 2rem 2rem;
+      transition: right 0.4s cubic-bezier(0.77, 0, 0.18, 1);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .mobile-menu.open { right: 0; }
+
+    .mobile-menu a {
+      display: block;
+      font-size: 0.875rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.3s ease;
+    }
+
+    .mobile-menu a:hover { color: var(--gold); }
+
+    .mobile-menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 140;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .mobile-menu-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 960px) {
+      .philosophy-grid,
+      .about-grid,
+      .visit-grid {
+        grid-template-columns: 1fr;
+        gap: 4rem;
+      }
+
+      .collection-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .events-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-visual { order: -1; }
+      .about-photo { aspect-ratio: 16/9; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-toggle { display: flex; }
+
+      .hero-lines { display: none; }
+
+      .collection-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .philosophy-grid { gap: 3rem; }
+
+      #philosophy, #about, #collection { padding: 5rem 0; }
+      #events, #visit { padding: 5rem 0; }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .newsletter-input,
+      .newsletter-submit {
+        width: 100%;
+      }
+
+      .newsletter-input { border-right: 1px solid var(--border); border-bottom: none; }
+    }
+
+    @media (max-width: 520px) {
+      .collection-grid { grid-template-columns: 1fr; }
+      .modal { padding: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav id="nav">
+    <div class="container">
+      <a href="#hero" class="nav-logo">Gloria<span>'s</span></a>
+      <ul class="nav-links">
+        <li><a href="#brands">Collection</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="#visit">Visit</a></li>
+      </ul>
+      <a href="#events" class="nav-cta">Book a Tasting</a>
+      <div class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu-overlay" id="menuOverlay"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#brands" class="mobile-link">Collection</a>
+    <a href="#events" class="mobile-link">Events</a>
+    <a href="#about" class="mobile-link">Our Story</a>
+    <a href="#visit" class="mobile-link">Visit</a>
+    <a href="#events" class="mobile-link" style="color:var(--gold);margin-top:1rem;">Book a Tasting &rarr;</a>
+  </div>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-lines"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Carmel, Indiana &nbsp;&mdash;&nbsp; Est. 2024</p>
+      <h1 class="hero-title serif">
+        Gloria's
+        <span class="hero-title-accent">Premium Spirits</span>
+      </h1>
+      <div class="hero-divider"></div>
+      <p class="hero-tagline">
+        Named for the woman who believed the finest things in life<br>
+        were meant to be shared slowly, and savored.
+      </p>
+      <div class="hero-actions">
+        <a href="#events" class="btn"><span>Book a Tasting</span></a>
+        <a href="#brands" class="btn btn-filled"><span>Explore Collection</span></a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BRAND MARQUEE
+  ============================================================ -->
+  <section id="brands" aria-label="Featured brands">
+    <div class="marquee-track marquee-track--1">
+      <!-- Duplicated for seamless loop -->
+      <div class="marquee-item">
+        <span class="marquee-brand">Clase Azul</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Yamazaki</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">The Macallan</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Blanton's</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Louis XIII</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Hibiki</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Don Julio 1942</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Casamigos Añejo</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Pappy Van Winkle</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">WhistlePig</span><span class="marquee-sep"></span>
+      </div>
+      <div class="marquee-item" aria-hidden="true">
+        <span class="marquee-brand">Clase Azul</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Yamazaki</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">The Macallan</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Blanton's</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Louis XIII</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Hibiki</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Don Julio 1942</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Casamigos Añejo</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Pappy Van Winkle</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">WhistlePig</span><span class="marquee-sep"></span>
+      </div>
+    </div>
+
+    <div class="marquee-track marquee-track--2">
+      <div class="marquee-item">
+        <span class="marquee-brand">Glenfiddich 21</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Nikka Coffey Grain</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Buffalo Trace</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Rémy Martin XO</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Ardbeg Uigeadail</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Johnnie Walker Blue</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Patrón El Alto</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Laphroaig 18</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Maker's Mark Private</span><span class="marquee-sep"></span>
+      </div>
+      <div class="marquee-item" aria-hidden="true">
+        <span class="marquee-brand">Glenfiddich 21</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Nikka Coffey Grain</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Buffalo Trace</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Rémy Martin XO</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Ardbeg Uigeadail</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Johnnie Walker Blue</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Patrón El Alto</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Laphroaig 18</span><span class="marquee-sep"></span>
+        <span class="marquee-brand">Maker's Mark Private</span><span class="marquee-sep"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PHILOSOPHY
+  ============================================================ -->
+  <section id="philosophy">
+    <div class="container">
+      <div class="philosophy-grid">
+        <div class="philosophy-left fade-up">
+          <p class="pull-quote">
+            "We don't just sell spirits. We curate experiences that<br>
+            make you feel something — the warmth of a memory,<br>
+            the thrill of discovery."
+          </p>
+        </div>
+        <div class="philosophy-right fade-up fade-up-delay-2">
+          <span class="label">Our Philosophy</span>
+          <span class="divider"></span>
+          <p>
+            At Gloria's, every bottle on our shelves was chosen with intention. We believe that premium spirits deserve to be understood — not just consumed. Our team of experts travel the world to source expressions that tell a story.
+          </p>
+          <p>
+            From the smoky peat of Islay to the agave fields of Jalisco, from the misty distilleries of Speyside to the cedar-aged cellars of Yamazaki — each bottle carries a world within it.
+          </p>
+          <a href="#events" class="btn"><span>Join a Tasting Event</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COLLECTION
+  ============================================================ -->
+  <section id="collection">
+    <div class="container">
+      <div class="collection-header fade-up">
+        <div>
+          <span class="label">The Collection</span>
+          <h2 style="margin-top:0.75rem;">Curated for the Discerning</h2>
+        </div>
+        <a href="#visit" class="btn"><span>Visit the Store</span></a>
+      </div>
+
+      <div class="collection-grid">
+        <div class="collection-card fade-up fade-up-delay-1">
+          <div class="collection-card-img">
+            <div class="collection-card-img-inner">
+              <span class="collection-bottle-icon">Scotch &amp; Single Malt</span>
+            </div>
+          </div>
+          <p class="collection-card-region">Scotland</p>
+          <p class="collection-card-name">Scotch &amp; Single Malts</p>
+          <p class="collection-card-desc">From peated Islay to honeyed Speyside, our Scotch selection spans the full character of the Highlands.</p>
+        </div>
+
+        <div class="collection-card fade-up fade-up-delay-2">
+          <div class="collection-card-img">
+            <div class="collection-card-img-inner">
+              <span class="collection-bottle-icon">Japanese Whisky</span>
+            </div>
+          </div>
+          <p class="collection-card-region">Japan</p>
+          <p class="collection-card-name">Japanese Whisky</p>
+          <p class="collection-card-desc">Precision, balance, and restraint. Our Japanese collection features some of the rarest pours in North America.</p>
+        </div>
+
+        <div class="collection-card fade-up fade-up-delay-3">
+          <div class="collection-card-img">
+            <div class="collection-card-img-inner">
+              <span class="collection-bottle-icon">Tequila &amp; Mezcal</span>
+            </div>
+          </div>
+          <p class="collection-card-region">Mexico</p>
+          <p class="collection-card-name">Tequila &amp; Mezcal</p>
+          <p class="collection-card-desc">Artisanal expressions from small-batch producers, showcasing the full spectrum of agave spirits.</p>
+        </div>
+
+        <div class="collection-card fade-up fade-up-delay-4">
+          <div class="collection-card-img">
+            <div class="collection-card-img-inner">
+              <span class="collection-bottle-icon">American Whiskey</span>
+            </div>
+          </div>
+          <p class="collection-card-region">United States</p>
+          <p class="collection-card-name">American Whiskey</p>
+          <p class="collection-card-desc">From allocated Buffalo Trace releases to barrel-selected single barrels — the best of Kentucky and beyond.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       EVENTS
+  ============================================================ -->
+  <section id="events">
+    <div class="container">
+      <div class="events-header fade-up">
+        <span class="label">Upcoming Tastings</span>
+        <h2>Experience the Extraordinary</h2>
+        <p>Intimate evenings guided by our resident experts. Each seat is limited — reserve yours before they're gone.</p>
+      </div>
+
+      <div class="events-grid">
+
+        <div class="event-card fade-up fade-up-delay-1">
+          <div class="event-card-visual">
+            <div class="event-visual-overlay"></div>
+            <div class="event-visual-label">
+              <span class="event-date-badge">May 16, 2025 &nbsp;&bull;&nbsp; 7:00 PM</span>
+            </div>
+          </div>
+          <div class="event-card-body">
+            <h3 class="event-card-title">An Evening with Single Malts</h3>
+            <p class="event-card-desc">
+              Journey through six rare Scotch whiskies — from the peated shores of Islay to the honeyed glens of Speyside. Our master of whisky will guide each pour with history, terroir, and tasting notes.
+            </p>
+            <div class="event-card-footer">
+              <div>
+                <span class="event-price-label">Per person</span>
+                <span class="event-price">$125<span class="event-price-sub">/ seat</span></span>
+              </div>
+              <button class="event-reserve-btn" onclick="openModal('An Evening with Single Malts', '$125', 'May 16, 2025')">
+                Reserve Your Seat
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card fade-up fade-up-delay-2">
+          <div class="event-card-visual">
+            <div class="event-visual-overlay"></div>
+            <div class="event-visual-label">
+              <span class="event-date-badge">May 30, 2025 &nbsp;&bull;&nbsp; 6:30 PM</span>
+            </div>
+          </div>
+          <div class="event-card-body">
+            <h3 class="event-card-title">The American Whiskey Society</h3>
+            <p class="event-card-desc">
+              Five allocated and limited-release American whiskies — including a rare Blanton's Gold and a barrel-selected Pappy 15. Food pairings by our in-house chef. Seats strictly limited to 12.
+            </p>
+            <div class="event-card-footer">
+              <div>
+                <span class="event-price-label">Per person</span>
+                <span class="event-price">$175<span class="event-price-sub">/ seat</span></span>
+              </div>
+              <button class="event-reserve-btn" onclick="openModal('The American Whiskey Society', '$175', 'May 30, 2025')">
+                Reserve Your Seat
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card fade-up fade-up-delay-3">
+          <div class="event-card-visual">
+            <div class="event-visual-overlay"></div>
+            <div class="event-visual-label">
+              <span class="event-date-badge">June 7, 2025 &nbsp;&bull;&nbsp; 7:00 PM</span>
+            </div>
+          </div>
+          <div class="event-card-body">
+            <h3 class="event-card-title">A Night in Japan</h3>
+            <p class="event-card-desc">
+              A curated exploration of Japanese whisky's finest expressions — Yamazaki 18, Hibiki 21, and Nikka's celebrated Coffey Grain. Guided by a guest speaker from Suntory's North American team.
+            </p>
+            <div class="event-card-footer">
+              <div>
+                <span class="event-price-label">Per person</span>
+                <span class="event-price">$150<span class="event-price-sub">/ seat</span></span>
+              </div>
+              <button class="event-reserve-btn" onclick="openModal('A Night in Japan', '$150', 'June 7, 2025')">
+                Reserve Your Seat
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="event-card fade-up fade-up-delay-4">
+          <div class="event-card-visual">
+            <div class="event-visual-overlay"></div>
+            <div class="event-visual-label">
+              <span class="event-date-badge">June 21, 2025 &nbsp;&bull;&nbsp; 6:00 PM</span>
+            </div>
+          </div>
+          <div class="event-card-body">
+            <h3 class="event-card-title">The Art of Agave</h3>
+            <p class="event-card-desc">
+              From the crystal clarity of blanco to the rich complexity of extra añejo — taste your way through Clase Azul, Don Julio 1942, and three artisanal mezcals from Oaxaca you won't find anywhere else.
+            </p>
+            <div class="event-card-footer">
+              <div>
+                <span class="event-price-label">Per person</span>
+                <span class="event-price">$95<span class="event-price-sub">/ seat</span></span>
+              </div>
+              <button class="event-reserve-btn" onclick="openModal('The Art of Agave', '$95', 'June 21, 2025')">
+                Reserve Your Seat
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ABOUT GLORIA
+  ============================================================ -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-visual fade-in">
+          <div class="about-photo">
+            <div class="about-photo-overlay"></div>
+            <div class="about-photo-text">
+              <span>Gloria</span>
+              <span style="font-size:0.625rem;letter-spacing:0.3em;margin-top:0.5rem;">1938 &ndash; 2019</span>
+            </div>
+          </div>
+          <div class="about-photo-decoration"></div>
+        </div>
+
+        <div class="about-content">
+          <span class="label fade-up">Our Story</span>
+          <span class="divider fade-up fade-up-delay-1"></span>
+          <h2 class="fade-up fade-up-delay-1">Named for Gloria.<br>Built on Her Spirit.</h2>
+          <p class="subheading fade-up fade-up-delay-2">
+            A woman who always knew the right bottle for the moment.
+          </p>
+          <p class="fade-up fade-up-delay-2">
+            <span class="about-dropcap">G</span>
+            loria was the kind of woman who made every gathering feel like an occasion. She kept a cabinet of fine spirits the way some people keep a library — curated, deliberate, full of stories. She knew that a great bottle of whisky wasn't just a drink; it was a conversation starter, a memory waiting to happen.
+          </p>
+          <p class="fade-up fade-up-delay-3">
+            When her granddaughter opened this store in Carmel, she insisted it carry her grandmother's name — not as nostalgia, but as a North Star. A reminder that this place exists to serve moments. Birthdays, anniversaries, quiet Tuesday evenings that somehow become unforgettable.
+          </p>
+          <p class="fade-up fade-up-delay-4">
+            Every bottle we carry, every tasting we host, is chosen with the question she always asked: <em>"Will this make them feel something?"</em>
+          </p>
+          <span class="about-signature fade-up fade-up-delay-5">— Gloria, always.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       VISIT
+  ============================================================ -->
+  <section id="visit">
+    <div class="container">
+      <div class="visit-grid">
+        <div class="visit-content">
+          <span class="label fade-up">Find Us</span>
+          <span class="divider fade-up fade-up-delay-1"></span>
+          <h2 class="fade-up fade-up-delay-1">Come In. Stay a While.</h2>
+          <p class="subheading fade-up fade-up-delay-2">
+            We're in the heart of Carmel — stop in, browse the shelves, or let us help you find the perfect bottle.
+          </p>
+          <div class="visit-info fade-up fade-up-delay-3">
+            <div class="visit-info-item">
+              <p class="visit-info-label">Address</p>
+              <p class="visit-info-value">
+                14550 Clay Terrace Blvd, Suite 140<br>
+                Carmel, Indiana 46032
+              </p>
+            </div>
+            <div class="visit-info-item">
+              <p class="visit-info-label">Hours</p>
+              <p class="visit-info-value">
+                Mon &ndash; Sat &nbsp; 11:00 AM &ndash; 9:00 PM<br>
+                Sunday &nbsp; 12:00 PM &ndash; 6:00 PM
+              </p>
+            </div>
+            <div class="visit-info-item">
+              <p class="visit-info-label">Contact</p>
+              <p class="visit-info-value">
+                <a href="tel:+13177001234">(317) 700-1234</a><br>
+                <a href="mailto:hello@gloriascarmel.com">hello@gloriascarmel.com</a>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="visit-map fade-in fade-up-delay-2">
+          <div class="visit-map-inner">
+            <div class="visit-map-pin"></div>
+            <p class="visit-map-address">Gloria's Premium Spirits<br>Carmel, Indiana</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       NEWSLETTER
+  ============================================================ -->
+  <section id="newsletter">
+    <div class="container">
+      <div class="newsletter-content fade-up">
+        <span class="label">Stay in the Know</span>
+        <span class="divider" style="margin:1.25rem auto;"></span>
+        <h2>First Access to Events & Rare Releases</h2>
+        <p>Join our list. No noise — only the bottles and evenings worth knowing about.</p>
+        <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+          <input class="newsletter-input" type="email" placeholder="your@email.com" required>
+          <button class="newsletter-submit" type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-logo">Gloria's</span>
+        <ul class="footer-nav">
+          <li><a href="#brands">Collection</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#about">Our Story</a></li>
+          <li><a href="#visit">Visit</a></li>
+        </ul>
+        <span class="footer-copy">&copy; 2025 Gloria's Premium Spirits. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       MODAL
+  ============================================================ -->
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+      <span class="label" id="modalEventLabel">Tasting Event</span>
+      <h3 id="modalTitle" style="margin-top:0.75rem;"></h3>
+      <p class="modal-subtitle" id="modalDate"></p>
+
+      <div class="modal-field">
+        <label for="modalName">Full Name</label>
+        <input type="text" id="modalName" placeholder="Your name">
+      </div>
+      <div class="modal-field">
+        <label for="modalEmail">Email Address</label>
+        <input type="email" id="modalEmail" placeholder="your@email.com">
+      </div>
+      <div class="modal-field">
+        <label for="modalSeats">Number of Seats</label>
+        <select id="modalSeats" onchange="updateTotal()">
+          <option value="1">1 Seat</option>
+          <option value="2">2 Seats</option>
+          <option value="3">3 Seats</option>
+          <option value="4">4 Seats</option>
+        </select>
+      </div>
+
+      <div class="modal-total">
+        <span class="modal-total-label">Total</span>
+        <span class="modal-total-price" id="modalTotal"></span>
+      </div>
+
+      <button class="modal-submit" onclick="handlePurchase()">Complete Reservation</button>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    /* ---------- Nav scroll ---------- */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    /* ---------- Parallax hero ---------- */
+    const heroBg = document.getElementById('heroBg');
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y < window.innerHeight) {
+        heroBg.style.transform = `translateY(${y * 0.35}px)`;
+      }
+    }, { passive: true });
+
+    /* ---------- Intersection Observer (scroll animations) ---------- */
+    const animItems = document.querySelectorAll('.fade-up, .fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    animItems.forEach(el => observer.observe(el));
+
+    /* ---------- Mobile menu ---------- */
+    const navToggle  = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    function openMenu() {
+      mobileMenu.classList.add('open');
+      menuOverlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      menuOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    navToggle.addEventListener('click', () => {
+      mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
+    });
+    menuOverlay.addEventListener('click', closeMenu);
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    /* ---------- Modal ---------- */
+    let currentPrice = 0;
+
+    function openModal(title, price, date) {
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalDate').textContent = date;
+      currentPrice = parseInt(price.replace(/\D/g, ''));
+      document.getElementById('modalSeats').value = '1';
+      updateTotal();
+      const overlay = document.getElementById('modalOverlay');
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      const overlay = document.getElementById('modalOverlay');
+      overlay.classList.remove('open');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    function updateTotal() {
+      const seats = parseInt(document.getElementById('modalSeats').value);
+      document.getElementById('modalTotal').textContent = `$${currentPrice * seats}`;
+    }
+
+    function handlePurchase() {
+      const name  = document.getElementById('modalName').value.trim();
+      const email = document.getElementById('modalEmail').value.trim();
+      if (!name || !email) {
+        alert('Please fill in your name and email to complete your reservation.');
+        return;
+      }
+      closeModal();
+      setTimeout(() => {
+        alert(`Thank you, ${name}! Your reservation is confirmed. A receipt will be sent to ${email}.`);
+      }, 400);
+    }
+
+    document.getElementById('modalOverlay').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    /* ---------- Newsletter ---------- */
+    function handleNewsletter(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button');
+      btn.textContent = 'You\'re on the list.';
+      btn.style.background = 'var(--gold-dark)';
+      e.target.querySelector('input').value = '';
+      setTimeout(() => {
+        btn.textContent = 'Subscribe';
+        btn.style.background = '';
+      }, 4000);
+    }
+
+    /* ---------- Escape key for modal ---------- */
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+        closeMenu();
+      }
+    });
+  </script>
+</body>
+</html>
