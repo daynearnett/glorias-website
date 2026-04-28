@@ -566,8 +566,33 @@
       gap: 1.25rem;
     }
 
+    /* ---- Flip card shell ---- */
     .collection-card {
       cursor: pointer;
+      perspective: 1100px;
+    }
+
+    .collection-card-inner {
+      position: relative;
+      width: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.68s cubic-bezier(0.4, 0.2, 0.2, 1);
+    }
+
+    @media (hover: hover) {
+      .collection-card:hover .collection-card-inner { transform: rotateY(180deg); }
+    }
+    .collection-card.is-flipped .collection-card-inner { transform: rotateY(180deg); }
+
+    /* ---- Shared face styles ---- */
+    .collection-card-face {
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    /* ---- FRONT face ---- */
+    .collection-card-front {
+      position: relative;
     }
 
     .collection-card-img {
@@ -576,61 +601,32 @@
       margin-bottom: 1.25rem;
       position: relative;
       overflow: hidden;
-    }
-
-    .collection-card-img {
       background: #0c0906;
     }
+
+    /* Front glassware photos */
     .collection-card:nth-child(1) .collection-card-img {
       background-image: url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800&q=80');
-      background-size: cover;
-      background-position: center;
+      background-size: cover; background-position: center;
     }
     .collection-card:nth-child(2) .collection-card-img {
-      background-image: url('https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=800&q=80');
-      background-size: cover;
-      background-position: center;
+      background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80');
+      background-size: cover; background-position: center;
     }
     .collection-card:nth-child(3) .collection-card-img {
       background-image: url('https://images.unsplash.com/photo-1556855810-ac404aa91e85?w=800&q=80');
-      background-size: cover;
-      background-position: center;
+      background-size: cover; background-position: center;
     }
     .collection-card:nth-child(4) .collection-card-img {
       background-image: url('https://images.unsplash.com/photo-1527281400683-1aae777175f8?w=800&q=80');
-      background-size: cover;
-      background-position: center;
+      background-size: cover; background-position: center;
     }
 
     .collection-card-img::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%);
-      transition: opacity 0.4s ease;
-    }
-
-    .collection-card:hover .collection-card-img::after { opacity: 0.4; }
-
-    .collection-card-img-inner {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .collection-card:hover .collection-card-img-inner {
-      transform: scale(1.04);
-    }
-
-    .collection-bottle-icon {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1rem;
-      color: rgba(201, 169, 110, 0.35);
-      letter-spacing: 0.15em;
+      background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
     }
 
     .collection-card-region {
@@ -653,6 +649,96 @@
       font-size: 0.8125rem;
       color: var(--cream-dim);
       line-height: 1.6;
+    }
+
+    .collection-card-hint {
+      display: inline-block;
+      margin-top: 0.75rem;
+      font-size: 0.625rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      opacity: 0.7;
+    }
+
+    /* ---- BACK face ---- */
+    .collection-card-back {
+      position: absolute;
+      inset: 0;
+      transform: rotateY(180deg);
+      border-radius: 2px;
+      overflow: hidden;
+      background: var(--bg-card);
+    }
+
+    .collection-card-back-img {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.5s ease;
+    }
+
+    .collection-card:hover .collection-card-back-img,
+    .collection-card.is-flipped .collection-card-back-img {
+      transform: scale(1.04);
+    }
+
+    /* Back bottle photos */
+    .collection-card:nth-child(1) .collection-card-back-img {
+      background-image: url('https://images.unsplash.com/photo-1458819714733-e5ab3d536722?w=800&q=80');
+    }
+    .collection-card:nth-child(2) .collection-card-back-img {
+      background-image: url('https://images.unsplash.com/photo-1528823872057-9c018a7a7553?w=800&q=80');
+    }
+    .collection-card:nth-child(3) .collection-card-back-img {
+      background-image: url('https://images.unsplash.com/photo-1607622750671-6cd9a99eabd1?w=800&q=80');
+    }
+    .collection-card:nth-child(4) .collection-card-back-img {
+      background-image: url('https://images.unsplash.com/photo-1506806732259-39c2d0268443?w=800&q=80');
+    }
+
+    .collection-card-back-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top,
+        rgba(12,9,6,0.96) 0%,
+        rgba(12,9,6,0.6)  45%,
+        rgba(12,9,6,0.15) 75%
+      );
+    }
+
+    .collection-card-back-text {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      z-index: 1;
+    }
+
+    .collection-card-back-eyebrow {
+      font-size: 0.5rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .collection-card-back-name {
+      font-family: 'Cormorant', serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+
+    .collection-card-back-desc {
+      font-size: 0.75rem;
+      color: var(--cream-dim);
+      line-height: 1.55;
     }
 
     /* ============================================================
@@ -1723,41 +1809,91 @@
       </div>
 
       <div class="collection-grid">
+
+        <!-- Card 1: Scotch -->
         <div class="collection-card fade-up fade-up-delay-1">
-          <div class="collection-card-img">
-            <div class="collection-card-img-inner"></div>
+          <div class="collection-card-inner">
+            <div class="collection-card-face collection-card-front">
+              <div class="collection-card-img"></div>
+              <p class="collection-card-region">Scotland</p>
+              <p class="collection-card-name">Scotch &amp; Single Malts</p>
+              <p class="collection-card-desc">From peated Islay to honeyed Speyside, our Scotch selection spans the full character of the Highlands.</p>
+              <span class="collection-card-hint">Hover to see the bottle &rarr;</span>
+            </div>
+            <div class="collection-card-face collection-card-back">
+              <div class="collection-card-back-img"></div>
+              <div class="collection-card-back-text">
+                <p class="collection-card-back-eyebrow">Featured — Scotch</p>
+                <p class="collection-card-back-name">The Macallan 18</p>
+                <p class="collection-card-back-desc">Highland single malt aged entirely in hand-picked sherry oak casks from Jerez, Spain. A Gloria's cornerstone.</p>
+              </div>
+            </div>
           </div>
-          <p class="collection-card-region">Scotland</p>
-          <p class="collection-card-name">Scotch &amp; Single Malts</p>
-          <p class="collection-card-desc">From peated Islay to honeyed Speyside, our Scotch selection spans the full character of the Highlands.</p>
         </div>
 
+        <!-- Card 2: Japanese Whisky -->
         <div class="collection-card fade-up fade-up-delay-2">
-          <div class="collection-card-img">
-            <div class="collection-card-img-inner"></div>
+          <div class="collection-card-inner">
+            <div class="collection-card-face collection-card-front">
+              <div class="collection-card-img"></div>
+              <p class="collection-card-region">Japan</p>
+              <p class="collection-card-name">Japanese Whisky</p>
+              <p class="collection-card-desc">Precision, balance, and restraint. Our Japanese collection features some of the rarest pours in North America.</p>
+              <span class="collection-card-hint">Hover to see the bottle &rarr;</span>
+            </div>
+            <div class="collection-card-face collection-card-back">
+              <div class="collection-card-back-img"></div>
+              <div class="collection-card-back-text">
+                <p class="collection-card-back-eyebrow">Featured — Japan</p>
+                <p class="collection-card-back-name">Hibiki Harmony</p>
+                <p class="collection-card-back-desc">Suntory's signature blend — a marriage of malt and grain whiskies aged in five distinct cask types. Rare, and worth it.</p>
+              </div>
+            </div>
           </div>
-          <p class="collection-card-region">Japan</p>
-          <p class="collection-card-name">Japanese Whisky</p>
-          <p class="collection-card-desc">Precision, balance, and restraint. Our Japanese collection features some of the rarest pours in North America.</p>
         </div>
 
+        <!-- Card 3: Tequila & Mezcal -->
         <div class="collection-card fade-up fade-up-delay-3">
-          <div class="collection-card-img">
-            <div class="collection-card-img-inner"></div>
+          <div class="collection-card-inner">
+            <div class="collection-card-face collection-card-front">
+              <div class="collection-card-img"></div>
+              <p class="collection-card-region">Mexico</p>
+              <p class="collection-card-name">Tequila &amp; Mezcal</p>
+              <p class="collection-card-desc">Artisanal expressions from small-batch producers, showcasing the full spectrum of agave spirits.</p>
+              <span class="collection-card-hint">Hover to see the bottle &rarr;</span>
+            </div>
+            <div class="collection-card-face collection-card-back">
+              <div class="collection-card-back-img"></div>
+              <div class="collection-card-back-text">
+                <p class="collection-card-back-eyebrow">Featured — Mexico</p>
+                <p class="collection-card-back-name">Don Julio 1942</p>
+                <p class="collection-card-back-desc">An añejo aged a minimum of two and a half years. Rich notes of caramel, vanilla, and roasted agave. A celebration in a bottle.</p>
+              </div>
+            </div>
           </div>
-          <p class="collection-card-region">Mexico</p>
-          <p class="collection-card-name">Tequila &amp; Mezcal</p>
-          <p class="collection-card-desc">Artisanal expressions from small-batch producers, showcasing the full spectrum of agave spirits.</p>
         </div>
 
+        <!-- Card 4: American Whiskey -->
         <div class="collection-card fade-up fade-up-delay-4">
-          <div class="collection-card-img">
-            <div class="collection-card-img-inner"></div>
+          <div class="collection-card-inner">
+            <div class="collection-card-face collection-card-front">
+              <div class="collection-card-img"></div>
+              <p class="collection-card-region">United States</p>
+              <p class="collection-card-name">American Whiskey</p>
+              <p class="collection-card-desc">From allocated Buffalo Trace releases to barrel-selected single barrels — the best of Kentucky and beyond.</p>
+              <span class="collection-card-hint">Hover to see the bottle &rarr;</span>
+            </div>
+            <div class="collection-card-face collection-card-back">
+              <div class="collection-card-back-img"></div>
+              <div class="collection-card-back-text">
+                <p class="collection-card-back-eyebrow">Featured — Kentucky</p>
+                <p class="collection-card-back-name">Buffalo Trace</p>
+                <p class="collection-card-back-desc">One of the most decorated distilleries in America. We carry allocated expressions you won't find at the grocery store.</p>
+              </div>
+            </div>
           </div>
-          <p class="collection-card-region">United States</p>
-          <p class="collection-card-name">American Whiskey</p>
-          <p class="collection-card-desc">From allocated Buffalo Trace releases to barrel-selected single barrels — the best of Kentucky and beyond.</p>
         </div>
+
       </div>
     </div>
   </section>
@@ -2293,6 +2429,15 @@
         closeModal();
         closeMenu();
       }
+    });
+
+    /* ---------- Collection card: tap to flip on touch devices ---------- */
+    document.querySelectorAll('.collection-card').forEach(card => {
+      card.addEventListener('click', () => {
+        if (window.matchMedia('(hover: none)').matches) {
+          card.classList.toggle('is-flipped');
+        }
+      });
     });
   </script>
 </body>
