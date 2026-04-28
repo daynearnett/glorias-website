@@ -6,7 +6,7 @@
   <title>Gloria's — Premium Spirits & Tasting Experiences</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
   <style>
     /* ============================================================
        RESET & VARIABLES
@@ -34,7 +34,7 @@
     body {
       background: var(--bg);
       color: var(--cream);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-weight: 300;
       line-height: 1.6;
       overflow-x: hidden;
@@ -46,22 +46,23 @@
     /* ============================================================
        TYPOGRAPHY
     ============================================================ */
-    .serif { font-family: 'Playfair Display', serif; }
+    .serif { font-family: 'Cormorant', serif; }
     .italic-serif { font-family: 'Cormorant Garamond', serif; }
 
     h1, h2, h3, h4 {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cormorant', serif;
       font-weight: 500;
       line-height: 1.15;
     }
 
     .label {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-size: 0.6875rem;
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--gold);
+      text-shadow: 0 1px 6px rgba(0,0,0,0.9);
     }
 
     /* ============================================================
@@ -75,7 +76,7 @@
 
     .btn {
       display: inline-block;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-size: 0.6875rem;
       font-weight: 500;
       letter-spacing: 0.18em;
@@ -169,10 +170,10 @@
     }
 
     .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.375rem;
+      font-family: 'Cinzel', serif;
+      font-size: 1.25rem;
       font-weight: 500;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
       color: var(--cream);
     }
 
@@ -212,7 +213,7 @@
     .nav-links a:hover::after { width: 100%; }
 
     .nav-cta {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-size: 0.625rem;
       font-weight: 500;
       letter-spacing: 0.2em;
@@ -277,7 +278,7 @@
       inset: 0;
       background:
         radial-gradient(ellipse 80% 50% at 50% 90%, rgba(139, 90, 24, 0.28) 0%, transparent 70%),
-        linear-gradient(180deg, rgba(8,5,3,0.82) 0%, rgba(10,7,4,0.55) 45%, rgba(8,5,3,0.80) 100%);
+        linear-gradient(180deg, rgba(6,4,2,0.90) 0%, rgba(8,5,3,0.72) 35%, rgba(8,5,3,0.72) 65%, rgba(6,4,2,0.92) 100%);
     }
 
     /* Subtle noise texture */
@@ -328,30 +329,33 @@
       margin-bottom: 1.75rem;
       opacity: 0;
       animation: fadeUp 1s ease 0.2s forwards;
+      text-shadow: 0 1px 8px rgba(0,0,0,1), 0 0 24px rgba(0,0,0,0.8);
     }
 
     .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(5rem, 14vw, 11rem);
+      font-family: 'Cinzel', serif;
+      font-size: clamp(4rem, 12vw, 9rem);
       font-weight: 400;
-      letter-spacing: -0.01em;
+      letter-spacing: 0.08em;
       line-height: 1;
       color: var(--cream);
       margin-bottom: 0.5rem;
       opacity: 0;
       animation: fadeUp 1.1s ease 0.35s forwards;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.9), 0 0 40px rgba(0,0,0,0.5);
     }
 
     .hero-title-accent {
       display: block;
       font-style: italic;
-      font-size: clamp(1.2rem, 3.5vw, 2.5rem);
+      font-size: clamp(1.1rem, 3vw, 2rem);
       font-weight: 400;
       letter-spacing: 0.35em;
       color: var(--gold);
       text-indent: 0.35em;
       margin-top: 0.75rem;
       font-family: 'Cormorant Garamond', serif;
+      text-shadow: 0 1px 8px rgba(0,0,0,1), 0 0 24px rgba(0,0,0,0.8);
     }
 
     .hero-divider {
@@ -474,7 +478,7 @@
     }
 
     .marquee-brand {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cormorant', serif;
       font-size: 1.0625rem;
       font-weight: 400;
       letter-spacing: 0.12em;
@@ -583,9 +587,9 @@
       background-position: center;
     }
     .collection-card:nth-child(2) .collection-card-img {
-      background-image: url('https://images.unsplash.com/photo-1514218953589-2d7d37efd2dc?w=800&q=80');
+      background-image: url('https://images.unsplash.com/photo-1574710704096-441da4f8940a?w=800&q=80');
       background-size: cover;
-      background-position: center 30%;
+      background-position: center;
     }
     .collection-card:nth-child(3) .collection-card-img {
       background-image: url('https://images.unsplash.com/photo-1556855810-ac404aa91e85?w=800&q=80');
@@ -593,7 +597,7 @@
       background-position: center;
     }
     .collection-card:nth-child(4) .collection-card-img {
-      background-image: url('https://images.unsplash.com/photo-1524781289445-56b98a9b2b00?w=800&q=80');
+      background-image: url('https://images.unsplash.com/photo-1543353071-087092ec169a?w=800&q=80');
       background-size: cover;
       background-position: center;
     }
@@ -638,7 +642,7 @@
     }
 
     .collection-card-name {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cormorant', serif;
       font-size: 1.0625rem;
       font-weight: 500;
       color: var(--cream);
@@ -734,7 +738,7 @@
     .cal-cell:last-child { border-right: none; }
 
     .cal-cell-date {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cormorant', serif;
       font-size: 0.875rem;
       color: var(--cream-faint);
       display: block;
@@ -768,7 +772,7 @@
       color: var(--gold);
     }
     .cal-event-name {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cormorant', serif;
       font-size: 0.75rem;
       color: var(--cream);
       line-height: 1.3;
@@ -818,58 +822,14 @@
     }
 
     .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: center;
-    }
-
-    .about-visual {
-      position: relative;
-    }
-
-    .about-photo {
-      aspect-ratio: 4/5;
-      background: linear-gradient(160deg, #1e1208 0%, #2e1c0c 35%, #180e06 65%, #221408 100%);
-      border-radius: 1px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .about-photo-overlay {
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 70% 50% at 50% 30%, rgba(201, 169, 110, 0.08), transparent),
-        linear-gradient(180deg, transparent 30%, rgba(12, 9, 6, 0.4) 100%);
-    }
-
-    .about-photo-decoration {
-      position: absolute;
-      inset: -1px;
-      border: 1px solid rgba(201, 169, 110, 0.12);
-      transform: translate(12px, 12px);
-      pointer-events: none;
-    }
-
-    .about-photo-text {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      color: rgba(201, 169, 110, 0.25);
-      font-size: 1.125rem;
-      letter-spacing: 0.1em;
+      max-width: 720px;
+      margin: 0 auto;
     }
 
     .about-content { }
 
     .about-dropcap {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cormorant', serif;
       font-size: 6rem;
       font-weight: 400;
       line-height: 0.8;
@@ -1073,7 +1033,7 @@
       border: 1px solid var(--border);
       border-right: none;
       padding: 0.875rem 1.25rem;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-size: 0.8125rem;
       color: var(--cream);
       outline: none;
@@ -1088,7 +1048,7 @@
       background: var(--gold);
       border: 1px solid var(--gold);
       color: var(--bg);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-size: 0.5625rem;
       font-weight: 500;
       letter-spacing: 0.2em;
@@ -1120,7 +1080,7 @@
     }
 
     .footer-logo {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cormorant', serif;
       font-size: 1.0625rem;
       font-weight: 500;
       letter-spacing: 0.1em;
@@ -1234,7 +1194,7 @@
       background: var(--bg-2);
       border: 1px solid var(--border);
       padding: 0.75rem 1rem;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-size: 0.875rem;
       color: var(--cream);
       outline: none;
@@ -1267,7 +1227,7 @@
     }
 
     .modal-total-price {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cormorant', serif;
       font-size: 1.5rem;
       color: var(--gold);
     }
@@ -1277,7 +1237,7 @@
       background: var(--gold);
       border: none;
       color: var(--bg);
-      font-family: 'Inter', sans-serif;
+      font-family: 'Raleway', sans-serif;
       font-size: 0.625rem;
       font-weight: 600;
       letter-spacing: 0.25em;
@@ -1353,8 +1313,7 @@
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .about-visual { order: -1; }
-      .about-photo { aspect-ratio: 16/9; }
+
     }
 
     @media (max-width: 768px) {
@@ -1396,6 +1355,61 @@
       .modal { padding: 2rem; }
       .newsletter-input { border-radius: 100px; border-right: 1px solid var(--border); }
       .newsletter-submit { border-radius: 100px; }
+    }
+
+    /* ============================================================
+       GIF SECTION
+    ============================================================ */
+    .gif-section {
+      padding: 6rem 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .gif-frame {
+      position: relative;
+      width: min(480px, 88vw);
+    }
+
+    .gif-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 2px;
+      box-shadow:
+        0 0 0 1px rgba(201,169,110,0.18),
+        0 24px 80px rgba(0,0,0,0.7),
+        0 8px 32px rgba(0,0,0,0.5);
+    }
+
+    /* Offset decorative border */
+    .gif-frame::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border: 1px solid rgba(201,169,110,0.22);
+      transform: translate(12px, 12px);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .gif-caption {
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .gif-caption p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--cream-faint);
+      letter-spacing: 0.05em;
     }
 
     /* ============================================================
@@ -1754,6 +1768,16 @@
     </div>
   </section>
 
+  <!-- GIF Break -->
+  <div class="gif-section fade-in">
+    <div class="gif-frame">
+      <img src="gloria-animation.gif" alt="Gloria's" loading="lazy">
+    </div>
+    <div class="gif-caption">
+      <p>Gloria's &mdash; McCordsville, Indiana</p>
+    </div>
+  </div>
+
   <!-- ============================================================
        EVENTS
   ============================================================ -->
@@ -1892,16 +1916,6 @@
   <section id="about">
     <div class="container">
       <div class="about-grid">
-        <div class="about-visual fade-in">
-          <div class="about-photo">
-            <div class="about-photo-overlay"></div>
-            <div class="about-photo-text">
-              <span>Gloria</span>
-            </div>
-          </div>
-          <div class="about-photo-decoration"></div>
-        </div>
-
         <div class="about-content">
           <span class="label fade-up">Our Story</span>
           <span class="divider fade-up fade-up-delay-1"></span>
