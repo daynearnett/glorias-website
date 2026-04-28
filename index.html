@@ -587,7 +587,7 @@
       background-position: center;
     }
     .collection-card:nth-child(2) .collection-card-img {
-      background-image: url('https://images.unsplash.com/photo-1574710704096-441da4f8940a?w=800&q=80');
+      background-image: url('https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=800&q=80');
       background-size: cover;
       background-position: center;
     }
@@ -597,7 +597,7 @@
       background-position: center;
     }
     .collection-card:nth-child(4) .collection-card-img {
-      background-image: url('https://images.unsplash.com/photo-1543353071-087092ec169a?w=800&q=80');
+      background-image: url('https://images.unsplash.com/photo-1527281400683-1aae777175f8?w=800&q=80');
       background-size: cover;
       background-position: center;
     }
@@ -1358,58 +1358,52 @@
     }
 
     /* ============================================================
-       GIF SECTION
+       GIF CTA SECTION
     ============================================================ */
-    .gif-section {
-      padding: 6rem 0;
+    .gif-cta {
+      position: relative;
+      width: 100%;
+      min-height: 540px;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: var(--bg);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
       overflow: hidden;
     }
 
-    .gif-frame {
-      position: relative;
-      width: min(480px, 88vw);
-    }
-
-    .gif-frame img {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 2px;
-      box-shadow:
-        0 0 0 1px rgba(201,169,110,0.18),
-        0 24px 80px rgba(0,0,0,0.7),
-        0 8px 32px rgba(0,0,0,0.5);
-    }
-
-    /* Offset decorative border */
-    .gif-frame::before {
-      content: '';
+    .gif-cta-bg {
       position: absolute;
-      inset: -1px;
-      border: 1px solid rgba(201,169,110,0.22);
-      transform: translate(12px, 12px);
-      pointer-events: none;
-      z-index: -1;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0.72;
     }
 
-    .gif-caption {
-      margin-top: 2rem;
+    .gif-cta-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(12,9,6,0.52) 0%,
+        rgba(12,9,6,0.28) 50%,
+        rgba(12,9,6,0.52) 100%
+      );
+    }
+
+    .gif-cta-content {
+      position: relative;
+      z-index: 2;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
     }
 
-    .gif-caption p {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1rem;
-      color: var(--cream-faint);
-      letter-spacing: 0.05em;
+    .gif-cta-content .label {
+      letter-spacing: 0.22em;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.8);
     }
 
     /* ============================================================
@@ -1768,13 +1762,13 @@
     </div>
   </section>
 
-  <!-- GIF Break -->
-  <div class="gif-section fade-in">
-    <div class="gif-frame">
-      <img src="gloria-animation.gif" alt="Gloria's" loading="lazy">
-    </div>
-    <div class="gif-caption">
-      <p>Gloria's &mdash; McCordsville, Indiana</p>
+  <!-- GIF CTA Break -->
+  <div class="gif-cta fade-in">
+    <img class="gif-cta-bg" src="gloria-animation.gif" alt="" aria-hidden="true">
+    <div class="gif-cta-overlay"></div>
+    <div class="gif-cta-content">
+      <span class="label">Intimate &middot; Curated &middot; Unforgettable</span>
+      <a href="#events" class="btn btn-filled"><span>Explore Our Tastings</span></a>
     </div>
   </div>
 
