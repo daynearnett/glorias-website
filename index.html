@@ -574,28 +574,39 @@
       overflow: hidden;
     }
 
+    .collection-card-img {
+      background: #0c0906;
+    }
     .collection-card:nth-child(1) .collection-card-img {
-      background: linear-gradient(160deg, #2a1a0a 0%, #4a2c10 50%, #1a0d05 100%);
+      background-image: url('https://images.unsplash.com/photo-1527281400683-1aae777175f8?w=800&q=80');
+      background-size: cover;
+      background-position: center;
     }
     .collection-card:nth-child(2) .collection-card-img {
-      background: linear-gradient(160deg, #0a1520 0%, #1a3040 50%, #050d15 100%);
+      background-image: url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80');
+      background-size: cover;
+      background-position: center;
     }
     .collection-card:nth-child(3) .collection-card-img {
-      background: linear-gradient(160deg, #1a0a1a 0%, #3a1520 50%, #0d050a 100%);
+      background-image: url('https://images.unsplash.com/photo-1516535794938-6063878f08cc?w=800&q=80');
+      background-size: cover;
+      background-position: center;
     }
     .collection-card:nth-child(4) .collection-card-img {
-      background: linear-gradient(160deg, #0d1a0a 0%, #1a3015 50%, #060d04 100%);
+      background-image: url('https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=800&q=80');
+      background-size: cover;
+      background-position: center;
     }
 
     .collection-card-img::after {
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.5) 100%);
+      background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%);
       transition: opacity 0.4s ease;
     }
 
-    .collection-card:hover .collection-card-img::after { opacity: 0.7; }
+    .collection-card:hover .collection-card-img::after { opacity: 0.4; }
 
     .collection-card-img-inner {
       position: absolute;
@@ -1438,51 +1449,6 @@
     }
 
     /* ============================================================
-       SKULL STRIP
-    ============================================================ */
-    .skull-strip {
-      position: relative;
-      height: 280px;
-      overflow: hidden;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-    .skull-strip img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 30%;
-      display: block;
-      filter: saturate(0.6) brightness(0.6);
-    }
-    .skull-strip-overlay {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, var(--bg-2) 0%, transparent 25%, transparent 75%, var(--bg-2) 100%),
-        linear-gradient(90deg, var(--bg-2) 0%, transparent 20%, transparent 80%, var(--bg-2) 100%);
-    }
-    .skull-strip-text {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      gap: 0.75rem;
-    }
-    .skull-strip-text blockquote {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: clamp(1.25rem, 3vw, 1.875rem);
-      color: var(--cream);
-      max-width: 640px;
-      padding: 0 2rem;
-      line-height: 1.5;
-    }
-
-    /* ============================================================
        SPIRAL DIVIDERS
     ============================================================ */
     .spiral-divider {
@@ -1760,9 +1726,7 @@
       <div class="collection-grid">
         <div class="collection-card fade-up fade-up-delay-1">
           <div class="collection-card-img">
-            <div class="collection-card-img-inner">
-              <span class="collection-bottle-icon">Scotch &amp; Single Malt</span>
-            </div>
+            <div class="collection-card-img-inner"></div>
           </div>
           <p class="collection-card-region">Scotland</p>
           <p class="collection-card-name">Scotch &amp; Single Malts</p>
@@ -1771,9 +1735,7 @@
 
         <div class="collection-card fade-up fade-up-delay-2">
           <div class="collection-card-img">
-            <div class="collection-card-img-inner">
-              <span class="collection-bottle-icon">Japanese Whisky</span>
-            </div>
+            <div class="collection-card-img-inner"></div>
           </div>
           <p class="collection-card-region">Japan</p>
           <p class="collection-card-name">Japanese Whisky</p>
@@ -1782,9 +1744,7 @@
 
         <div class="collection-card fade-up fade-up-delay-3">
           <div class="collection-card-img">
-            <div class="collection-card-img-inner">
-              <span class="collection-bottle-icon">Tequila &amp; Mezcal</span>
-            </div>
+            <div class="collection-card-img-inner"></div>
           </div>
           <p class="collection-card-region">Mexico</p>
           <p class="collection-card-name">Tequila &amp; Mezcal</p>
@@ -1793,9 +1753,7 @@
 
         <div class="collection-card fade-up fade-up-delay-4">
           <div class="collection-card-img">
-            <div class="collection-card-img-inner">
-              <span class="collection-bottle-icon">American Whiskey</span>
-            </div>
+            <div class="collection-card-img-inner"></div>
           </div>
           <p class="collection-card-region">United States</p>
           <p class="collection-card-name">American Whiskey</p>
@@ -1976,16 +1934,6 @@
       </div>
     </div>
   </section>
-
-  <!-- Skull Strip -->
-  <div class="skull-strip fade-in">
-    <img src="https://images.unsplash.com/photo-1509994196812-897f5a6ab49c?w=1600&q=80" alt="Day of the Dead sugar skull decoration" loading="lazy">
-    <div class="skull-strip-overlay"></div>
-    <div class="skull-strip-text">
-      <span class="label">Spirits &amp; Spirits</span>
-      <blockquote>"Every great bottle is a small ceremony. Every sip, a quiet act of remembrance."</blockquote>
-    </div>
-  </div>
 
   <!-- Spiral Divider 3 -->
   <div class="spiral-divider" data-spiral>
